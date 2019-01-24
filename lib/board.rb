@@ -1,14 +1,26 @@
+require 'pry'
+
 class Board
-    #TO DO : la classe a 1 attr_accessor : un array/hash qui contient les BoardCases.
-    #Optionnellement on peut aussi lui rajouter un autre sous le nom @count_turn pour compter le nombre de coups joué
-  
+    
+    attr_accessor :plateau
   
     def initialize
-      #TO DO :
-      #Quand la classe s'initialize, elle doit créer 9 instances BoardCases
-      #Ces instances sont rangées dans un array/hash qui est l'attr_accessor de la classe
+      @plateau = Array.new(9, " ")
     end
-  
+
+    def printboard
+      puts "voici le pateau du morpion"
+      puts "\n"
+      puts "#{@plateau[0]} | #{@plateau[1]} | #{@plateau[2]}\n"
+         puts          "----------\n"
+      puts "#{@plateau[3]} | #{@plateau[4]} | #{@plateau[5]}\n"
+         puts          "----------\n"   
+       puts "#{@plateau[6]} | #{@plateau[7]} | #{@plateau[8]}"  
+         puts "\n\n"
+      end
+
+    
+
     def play_turn
       #TO DO : une méthode qui :
       #1) demande au bon joueur ce qu'il souhaite faire
@@ -17,5 +29,19 @@ class Board
   
     def victory?
       #TO DO : une méthode qui vérifie le plateau et indique s'il y a un vainqueur ou match nul
+      wins = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  # <-- Horizontal wins
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  # <-- Vertical wins
+    [0, 4, 8], [2, 4, 6],             # <-- Diagonal wins
+    ]
+    if wins.any? { |line| line.all? { |square| @plateau[plateau] == @player } }
+    @win = @player
+     end
+
     end
+
 end  
+binding.pry
+tab = Array.new(9, "3")
+# puts tab.count
+p tab.affichePlateau
